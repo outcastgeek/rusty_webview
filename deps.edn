@@ -8,7 +8,7 @@
         com.bhauman/figwheel-main {:mvn/version "0.2.0"}
         com.bhauman/rebel-readline-cljs {:mvn/version "0.1.4"}}
  :aliases {:release {:main-opts ["-m" "cljs.main"
-                                 "-O" "none"
+                                 "-O" "advanced"
                                  "-o" "src/view/js/ui.js"
                                  "-c" "ui.core"]}
            :build {:main-opts ["-m" "figwheel.main"

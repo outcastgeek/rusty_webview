@@ -50,12 +50,25 @@
             :value @(rf/subscribe [:time-color])
             :on-change #(rf/dispatch [:time-color-change (-> % .-target .-value)])}]])  ;; <---
 
+;; -- Counter UI -------------------------------------------------------
+
+(defn counter-view
+  []
+  [:div
+   [:h2 "Counter"]
+   [:div
+    [:button {:on-click #(rf/dispatch [:decrement])} "-"]
+    [:span @(rf/subscribe [:counter])]
+    [:button {:on-click #(rf/dispatch [:increment])} "+"]]])
+
 (defn ui
   []
   [:div
    [:h1 "Hello world, it is now"]
    [clock]
-   [color-input]])
+   [color-input]
+   [:hr]
+   [counter-view]])
 
 ;; -- Entry Point -------------------------------------------------------------
 

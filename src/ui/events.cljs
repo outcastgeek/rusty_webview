@@ -35,3 +35,22 @@
   :time-color
   (fn [db _]
     (:time-color db)))
+
+;; -- Counter Event Handlers -------------------------------------------------------
+
+(rf/reg-event-db
+ :increment
+ (fn [db _]
+   (update-in db [:counter] (fnil inc 0))))
+
+(rf/reg-event-db
+ :decrement
+ (fn [db _]
+   (update-in db [:counter] (fnil dec 0))))
+
+;; -- Counter Query -------------------------------------------------------
+
+(rf/reg-sub
+ :counter
+ (fn [db _]
+   (get-in db [:counter] 0)))

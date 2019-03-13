@@ -1,5 +1,5 @@
 [package]
-name = "rusty_clj"
+name = "rusty_webview"
 version = "0.1.0"
 authors = ["outcastgeek"]
 edition = "2018"
