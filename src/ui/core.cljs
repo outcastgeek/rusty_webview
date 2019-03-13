@@ -3,7 +3,15 @@
             [reagent.core :as r]
             [re-frame.core :as rf]
             [ui.db]
-            [ui.events]))
+            [ui.events]
+            ;; Material UI
+            ; [react]
+            ; [react-dom]
+            ; ["@material-ui/core/Button" :refer [Button]] ;; Not Quite Working
+            ["@material-ui/core" :as mui]
+            ["@material-ui/core/styles" :refer [createMuiTheme withStyles]]
+            ["@material-ui/core/colors" :as mui-colors]
+            ["@material-ui/icons" :as mui-icons]))
 
 (enable-console-print!)
 
@@ -55,11 +63,26 @@
 (defn counter-view
   []
   [:div
-   [:h2 "Counter"]
-   [:div
-    [:button {:on-click #(rf/dispatch [:decrement])} "-"]
-    [:span @(rf/subscribe [:counter])]
-    [:button {:on-click #(rf/dispatch [:increment])} "+"]]])
+   [:> mui/Card
+    [:> mui/CardHeader {:title "Counter"
+                        :subheader "This is the current Count:"}]
+    [:> mui/CardContent
+     ; [:span @(rf/subscribe [:counter])]
+     [:> mui/Typography {:component "p"}
+      [:b {:style {:font-size "40px"
+                   :margin "5px"}}
+       @(rf/subscribe [:counter])]]]
+    [:> mui/CardActions
+     ;;[:button {:on-click #(rf/dispatch [:decrement])} "-"]
+     [:> mui/Button {:variant "contained"
+                     :color "default"
+                     :on-click #(rf/dispatch [:decrement])} [:b "-"]]
+     ;;[:button {:on-click #(rf/dispatch [:increment])} "+"]
+     [:> mui/Button {:variant "contained"
+                     :color "primary"
+                     :on-click #(rf/dispatch [:increment])} [:b "+"]]
+     ]]
+    ])
 
 (defn ui
   []

@@ -2,3 +2,4 @@
 **/*.rs.bk
 .cpcache
 out
+node_modules
